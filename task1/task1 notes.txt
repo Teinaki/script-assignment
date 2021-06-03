@@ -1,0 +1,56 @@
+#!/bin/bash
+
+The script should ingest a CSV file (local or remote) that contains user information, which
+contains the values required to perform the following tasks:
+file=$1
+IFS=","
+while read col1 col2 col3
+do
+echo "Column 1 value: $col1"
+echo "Column 2 value: $col2"
+echo "Column 3 value: $col3"
+done < $file
+
+
+• Create each specified user while implementing best practices
+• Set a default password for the user based on the user’s birth date
+• Create the required secondary groups (if specified and non-existent)
+• Assignment to the correct secondary groups (if specified)
+• Create the required shared folder (if specified and non-existent)
+• Create the required secondary group for the shared folder (if specified and non-existent)
+• Assignment of the user to a group to access the shared folder (if specified)
+• Creation of a link to the users shared folder (if specified)
+• Creation of an alias to shutdown the system (if user is in the sudo group)
+• Enforce a password change at first login
+
+sudo useradd batman
+sudo passwd batman
+echo iambatman
+echo iambatman
+groupadd secondry
+usermod -G secondry someguy
+mkdir shared
+chown :secondry /home/student/shared
+ln shared hardlink
+alias lsl="ls -l"
+chage -d0 someguy
+
+http://kate.ict.op.ac.nz/~faisalh/IN617linux/users.csv
+
+The contents of the example fil are listed below:
+
+e-mail;birth date;groups;sharedFolder
+edsger.dijkstra@tue.nl;1930/05/11
+john.mccarthy@caltech.edu;1927/09/04
+andrew.tanenbaum@vua.nl;1944/03/16
+alan.turing@cam.ac.uk;1912/06/23
+linus.torvalds@linux.org;1969/12/28
+
+Carefully check the format of the provided file and use it as an example of what parameters your
+script must be able to handle. Each row of the sample file represents an individual user. The
+sample file contains a header that documents each column in the file. The available columns in
+the file are:
+• The email address of the user
+• The birth date of the user (in the format YYYY/MM/DD, for example, 1991/11/17)
+• The secondary groups the user should be added to
+• A shared folder that the user requires full access to (full rwx permissions)
