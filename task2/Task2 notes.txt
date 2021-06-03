@@ -1,0 +1,35 @@
+The script should ingest a directory name as an argument, or ask the user for a directory
+if no argument is provided
+• The script should generate a compressed tarball archive in gunzip format (.tar.gz file)
+that contains the entire contents of the supplied directory
+• The script should prompt the user during execution for the following details:
+– IP address or URL of the remote server
+– Port number of the remote server
+– Target directory to save the compressed tarball archive
+• The script should then upload the compressed tarball archive to a remote host using the
+scp protocol and details provided by the user input
+
+As stated, your script should ingest a file system directory. Your script should be able to handle
+the following inputs:
+1. A directory passed as a command line argument
+2. A directory passed as user input when no command line argument has been supplied
+The script should check the user input is a valid and that the directory exists. Then the script
+should generate a compressed tarball archive (with a file extension of .tar.gz) of the target
+directory and all the contents of the directory. The basename of the compressed tarball archive
+should be the same as the name of the input directory. Hint: Check the tar command for this
+purpose, and we will discuss this in class as well.
+The script should then upload the generated archive to a remote host using secure copy, achieved
+using the scp command. The details of the remote server should be collected from the user
+by reading input during the script execution (use the read command). The script should test
+whether the remote server exists and if the file transfer was successful.
+
+
+tar -czvf file.tar.gz $1
+
+#!bin/bash
+
+echo "Enter IP address or URL of the remote server"
+read URL
+echo "Enter Port number of the remote server"
+read PORT
+echo "Target Directory is $1  URL is $URL Port number is $PORT"
