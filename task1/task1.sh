@@ -1,6 +1,20 @@
-#!bin/bash
+        #!bin/bash
 
-        file=$1
+        input=$1
+        #if no argument is provided
+        if [ -z "$1" ]
+        then
+                echo "Enter full path to csv"
+                read input
+        fi
+
+        if [ -z "$input" ]
+        then
+                echo "No input data in csv format"
+                exit 1
+        fi
+
+        file=$input
         IFS=";"
 
         while read col1 col2 col3 col4
