@@ -30,7 +30,7 @@ else
 fi
 
 #user input for the securely copy file
-echo "Enter IP address or URL of the remote server"
+echo "Enter IP address or URL of the remote server" #only allowed ip address for now
 read URL
 echo "Enter Port number of the remote server"
 read PORT
@@ -38,6 +38,8 @@ echo "Enter target user on the remote server"
 read USER
 echo "Enter full path for target directory to save to"
 read DIR
+
+#should have tests to see if these values are valid before using scp command
 
 #will take the user data just added and attempt to copy the tar.gz to there
 scp -P $PORT ~/$enddir.tar.gz $USER@$URL:$DIR

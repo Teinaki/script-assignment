@@ -1,10 +1,10 @@
 #!bin/bash
 
 error_exit() {
-	echo ">Error code $1"
-	echo ">$2"
-	echo "Exiting"
-	exit 1
+echo ">Error code $1"
+echo ">$2"
+echo "Exiting"
+exit 1
 }
 
 input=$1
@@ -15,11 +15,17 @@ then
         read input
 fi
 
-if [ -z "$input" ]
+if [ -z $input ]
 then
-        echo "No input data in csv format"
+        echo "No input was given"
         exit 1
 fi
+
+if [[ ! -f $input ]]; then
+        echo "Input was not a file"
+        exit 1
+fi
+
 
 file=$input
 IFS=";"
@@ -108,7 +114,7 @@ done
 if [ "$col4" != '' ]; then
         sudo ln -s "/home$col4" /home/$user/groupFiles
 fi
-#had problems with the links being created for the hole directory so I made sure the string wasn't empty for $col4
+#had problems with the links being created for the home directory so I made sure the string wasn't empty for $col4
 
 #IFS is then set back to ';' for the next row in the file
 IFS=';'
