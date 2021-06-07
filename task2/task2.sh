@@ -1,5 +1,13 @@
 #!bin/bash
 
+#error checking function
+error_exit() {
+	echo ">Error code $1"
+	echo ">$2"
+	echo "Exiting"
+	exit 1
+}
+
 input=$1
 #if no argument is provided
 if [ -z "$1" ]
